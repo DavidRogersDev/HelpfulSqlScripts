@@ -1,5 +1,5 @@
 DECLARE @ColumnToQuery NVARCHAR(255)
-SET @ColumnToQuery = '%%'
+SET @ColumnToQuery = 'LogbookEntryProcedureId'
 
 
 SELECT

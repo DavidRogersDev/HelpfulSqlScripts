@@ -1,7 +1,7 @@
-DECLARE @ColumnName nvarchar(max);
-SET @ColumnName = '%bst%';
+DECLARE @ColumnName NVARCHAR(MAX);
+SET @ColumnName = '%%';
 
-select  
+SELECT  
         s.[name]            'Schema',
         t.[name]            'Table',
         c.[name]            'Column',
@@ -14,11 +14,13 @@ select
         d.[is_user_defined] 'Is UserDefined',
         t.[modify_date]     'Date Modified',
         t.[create_date]     'Date created'
-from        sys.schemas s
-inner join  sys.tables  t
-on s.schema_id = t.schema_id
-inner join  sys.columns c
-on t.object_id = c.object_id
-inner join  sys.types   d
-on c.user_type_id = d.user_type_id
-where c.name like @ColumnName
+FROM        
+	sys.schemas s
+INNER JOIN  
+	sys.tables  t ON s.schema_id = t.schema_id
+INNER JOIN  
+	sys.columns c ON t.object_id = c.object_id
+INNER JOIN  
+	sys.types   d ON c.user_type_id = d.user_type_id
+WHERE
+	 c.name like @ColumnName
